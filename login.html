@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style/style.css" />
+  </head>
+  <body>
+    <header>
+      <div class="logo-container">
+        <img class="logo" src="./style/img/logo.png" />
+      </div>
+      <div class="butt_auth-container mb">
+        <button class="butt_auth" onclick="window.location.href = 'index.html'">
+          Назад
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <div id="loginForm" class="auth-container">
+        <input
+          class="input_auth"
+          name="login"
+          id="surname-input"
+          placeholder="Введіть прізвище"
+          type="text"
+          required
+          minlength="6"
+        />
+        <input
+          class="input_auth"
+          id="ticket-input"
+          name="password"
+          placeholder="Введіть номер квитка"
+          type="password"
+          required
+          minlength="6"
+        />
+        <div class="butt_form-container">
+          <button class="butt_form" onclick="login_user(event)">Увійти</button>
+        </div>
+        <div id="error_login">Неправильний логін та/або пароль</div>
+      </div>
+    </main>
+  </body>
+
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+  <script src="./style/js/parts/color.js"></script>
+  <script src="./style/js/index.js"></script>
+  <script src="./style/js/store.js"></script>
+</html>

@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="./style/style.css" />
+      </head>
+
+  <body>
+    <script>
+      var token = localStorage.getItem("token") // Отримайте токен зі змінної EJS
+      fetch("/check", {
+        method: "POST",
+
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          token: token,
+        },
+        body: JSON.stringify({ token: token }),
+      })
+        .then((response) => {
+          return response.json()
+        })
+        .then((data) => {
+          console.log(data)
+          if (data.message !== "checked") {
+            window.location.href = "index.html"
+          } 
+        })
+        .catch((error) => {
+          console.error("Error:", error)
+        })
+
+      function logout() {
+        localStorage.removeItem("token")
+        window.location.href = "index.html"
+      }
+    </script>
+    <script src="/js/index.js"></script>
+    <header>
+      <div class="logo-container">
+        <img class="logo" src="./style/img/logo.png" />
+      </div>
+      <div class="butt_auth-container">
+        <button class="butt_auth mb" onclick="logout()">
+          Вийти
+        </button>
+      </div>
+    </header>
+    <main>
+      <nav class="mb"></nav>
+      <nav id="nav_vertical">
+        <button class="salir" onclick="button_on_click()">
+          <img class="left_img_nav" src="./style/img/left.png" />
+        </button>
+        <div class="nav_contents">
+          <!-- <div class="nav_content"><a class="nav_link" href="/login">dbq</a></div> -->
+          <div class="nav_content">
+            <a class="nav_link" href="/login">Учасники</a>
+          </div>
+          <div class="nav_content">
+            <a class="nav_link" href="/login">Засідання</a>
+          </div>
+        </div>
+      </nav>
+      <nav id="nav_horizontal">
+        <div class="nav_contents">
+          <div class="nav_content">
+            <a class="nav_link" href="/members">Учасники</a>
+          </div>
+          <div class="nav_content">
+            <a class="nav_link" href="/meets">Засідання</a>
+          </div>
+        </div>
+      </nav>
+      <button id="buttonmenu" onclick="button_on_click()">
+        <img class="imgmenu" src="./style/img/line.png" />
+      </button>
+      <div class="news-conatiner"><div class="news">
+        <div class="news-header">
+            <div class="news-title">pppppp</div>
+            <div class="news-data">2024-05-07</div>
+         </div>
+        <div class="news-text">pppppr/div>
+      </div>
+    </div><div class="news">
+        <div class="news-header">
+            <div class="news-title">Китай відправить на Марс власний ровер та вертоліт</div>
+            <div class="news-data">2024-05-23</div>
+         </div>
+        <div class="news-text">Днями представники Індійської організації космічних досліджень (ISRO) під час презентації в Центрі космічних рішень у Гуджараті повідомили, що йде підготовка до якнайшвидшого відправлення на Марс марсохода та вертольота. Деякі джерела стверджують, що місія може стартувати наприкінці 2024 року, у що важко віриться, оскільки в проекті залишається низка невирішених проблем. У будь-якому випадку, Індія прагне Марса і готова це довести.
+
+Першу міжпланетну автоматичну станцію Індія відправила саме до Марса, що сталося у 2014 році. По суті це була демонстраційна платформа. Проте станція долетіла до орбіти Марса і пропрацювала до 2022 року, на що від неї ніхто не очікував. З усім тим, фахівці ISRO всього за $75 млн і півтора року зуміли створити апарат, який вирішив поставлені перед ним завдання. Минулорічна посадка Індією станції та місяцехода на Місяць і відправка до Сонця автоматичної обсерваторії лише підтвердили здатність індійських вчених та інженерів реалізовувати космічні програми світового рівня, що, напевно, можна і варто повторити./div>
+      </div>
+    </div><div class="news">
+        <div class="news-header">
+            <div class="news-title">іііііd</div>
+            <div class="news-data">2024-05-28</div>
+         </div>
+        <div class="news-text">іііііdf/div>
+      </div>
+    </div><div class="news">
+        <div class="news-header">
+            <div class="news-title">визначили найкраще місце для розміщення місячної бази</div>
+            <div class="news-data">2024-06-30</div>
+         </div>
+        <div class="news-text">Вчені з Baylor University у США зробили важливий крок до реалізації ідеї постійної людської присутності на Місяці. В опублікованій на порталі The Astronomical статті дослідники докладно описали потенційні джерела води, які можуть забезпечити функціонування місячної бази.
+
+У дослідженні наголошується, що створення автономної місячної колонії – це прагматичний перший крок у неминучому розширенні людської цивілізації по всій Сонячній системі третього тисячоліття. Робота фокусується на чотирьох ключових аспектах:/div>
+      </div>
+    </div><div class="news">
+        <div class="news-header">
+            <div class="news-title">qqqqqqqqqqqqqqqqqqqq</div>
+            <div class="news-data">2024-05-21</div>
+         </div>
+        <div class="news-text">eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee eeeeeeeeeeeeee eeeeeeeeeeeeee eeeeeeeeeeeeee eeeeeeeeeeeeee eeeeeeeeeeeeee eeeeeeeeeeeeee eeeeeeeeeeeeee eeeeeeeeeeeeee eeeeeeeeeeeeee eeeeeeeeeeeeee eeeeeeeeeeeeee eeeeeeeeeeeeee eeeeeeeeeeeeee eeeeeeeeeeeeee eeeeeeeeeeeeee eeeeeeeeeeeeee eeeeeeeeeeeeee eeeeeeeeeeeeee /div>
+      </div>
+    </div>    </div>
+</main>
+</body>
+</html>

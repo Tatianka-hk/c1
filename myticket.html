@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style/style.css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <div class="logo-container">
+          <img class="logo" src="./style/img/logo.png" />
+        </div>
+        <div class="butt_auth-container">
+          <button class="butt_auth mb" onclick="back()">Назад</button>
+        </div>
+      </header>
+
+      <nav id="nav_vertical">
+        <button class="salir" onclick="button_on_click()">
+          <div class="nav_content">
+            <a class="nav_link" href="login.html">Увійти</a>
+          </div>
+          <img class="left_img_nav" src="./style/img/left.png" />
+        </button>
+        <div id="id_nav_vertical"></div>
+      </nav>
+      <nav id="nav_horizontal">
+        <div id="id_nav_horizontal"></div>
+      </nav>
+      <button id="buttonmenu" onclick="button_on_click()">
+        <img class="imgmenu" src="./style/img/line.png" />
+      </button>
+      <main>
+        <div class="ticket-container">
+          <div class="ticket">
+            <div class="pib_info">
+              <div id="pib_data">Аліса Вікторівна Науменко</div>
+              <div class="pib_placeholder">ПІБ учасника</div>
+            </div>
+            <div class="info-container">
+              <div class="info-placeholder">Пошта:</div>
+              <div class="info" id="email"></div>
+            </div>
+            <div class="info-container">
+              <div class="info-placeholder">Квиток:</div>
+              <div class="info" id="ticket"></div>
+            </div>
+            <div class="info-container">
+              <div class="info-placeholder">Наукові теми:</div>
+              <div class="info" id="themes"></div>
+            </div>
+          </div>
+        </div>
+      </main>
+      <footer id="id_footer"></footer>
+    </div>
+  </body>
+  <script src="./style/js/parts/color.js"></script>
+  <script src="./style/js/parts/nav.js"></script>
+  <script src="./style/js/parts/footer.js"></script>
+  <script src="./style/js/index.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+
+  <script src="./style/js/store.js"></script>
+  <script>
+    verifyToken()
+      .then((res) => {
+        if (!res) {
+          window.location.href = "login.html"
+        }
+      })
+      .then(() => {
+        return getData()
+      })
+      .then((data) => {
+        document.getElementById("pib_data").innerText =
+          `${data.surname} ${data.name} ${data.last}`
+        document.getElementById("email").innerText = `${data.email}`
+        document.getElementById("ticket").innerText = `${data.ticket}`
+        document.getElementById("themes").innerText = `${data.themes}`
+        console.log(data.email)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  </script>
+</html>
