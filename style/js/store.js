@@ -89,7 +89,6 @@ async function login_user(event) {
   }
 }
 
-
 async function getUsersForRecommendation() {
   const ticket = localStorage.getItem("ticket")
 
@@ -107,10 +106,51 @@ async function getUsersForRecommendation() {
     users.push(userData.data())
   })
   console.log(users)
-  return findRecommendations(currentUserData, users)
+  const contentBasedRecs = findRecommendations(currentUserData, users);
+
+  const collabRecs = await getCollaborativeRecommendations(currentUserData, users);
+
+  const combinedRecs = mergeRecommendations(contentBasedRecs, collabRecs);
+  console.log(collabRecs, contentBasedRecs)
+  console.log(combinedRecs)
+  return combinedRecs.slice(0, 5);
+}
+async function getCollaborativeRecommendations(currentUserData, usersData) {
+  const currentUserInteractions = currentUserData.interactions || {};
+
+  const otherUsers = usersData.filter(user => user.id !== currentUserData.id);
+
+  const recommendations = otherUsers.map(user => {
+    const similarityScore = Object.keys(user.interactions || {}).reduce((acc, key) => {
+      if (currentUserInteractions[key]) {
+        acc += Math.min(user.interactions[key], currentUserInteractions[key]);
+      }
+      return acc;
+    }, 0);
+    return { ...user, similarityScore };
+  });
+
+  return recommendations.sort((a, b) => b.similarityScore - a.similarityScore);
+}
+
+function mergeRecommendations(contentRecs, collabRecs) {
+  const merged = [...contentRecs, ...collabRecs];
+  const uniqueRecs = [];
+
+  const uniqueIds = new Set();
+
+  merged.forEach(rec => {
+    if (!uniqueIds.has(rec.id)) {
+      uniqueIds.add(rec.id);
+      uniqueRecs.push(rec);
+    }
+  });
+
+  return uniqueRecs.sort((a, b) => b.matchScore - a.matchScore);
 }
 
 function findRecommendations(currentUser, users) {
+  console.log(users)
   return users
     .filter((user) => user.name !== currentUser.name)
     .map((user) => {
