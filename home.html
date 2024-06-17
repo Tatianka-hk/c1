@@ -1,84 +1,55 @@
 <!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="./style/style.css" />
-      </head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style/style.css" />
+  </head>
 
   <body>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+
+    <script src="./style/js/store.js"></script>
     <script>
-      var token = localStorage.getItem("token") // Отримайте токен зі змінної EJS
-      fetch("/check", {
-        method: "POST",
-
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-          token: token,
-        },
-        body: JSON.stringify({ token: token }),
-      })
-        .then((response) => {
-          return response.json()
-        })
-        .then((data) => {
-          console.log(data)
-          if (data.message !== "checked") {
+      verifyToken()
+        .then((res) => {
+          if (!res) {
             window.location.href = "index.html"
-          } 
+          }
         })
-        .catch((error) => {
-          console.error("Error:", error)
+        .catch((err) => {
+          console.log(err)
         })
-
-      function logout() {
-        localStorage.removeItem("token")
-        window.location.href = "index.html"
-      }
     </script>
-    <script src="/js/index.js"></script>
-    <header>
-      <div class="logo-container">
-        <img class="logo" src="./style/img/logo.png" />
-      </div>
-      <div class="butt_auth-container">
-        <button class="butt_auth mb" onclick="logout()">
-          Вийти
-        </button>
-      </div>
-    </header>
-    <main>
-      <nav class="mb"></nav>
+    <div class="wrapper">
+      <header>
+        <div class="logo-container">
+          <img class="logo" src="./style/img/logo.png" />
+        </div>
+        <div class="butt_auth-container">
+          <button class="butt_auth mb" onclick="logout()">Вийти</button>
+        </div>
+      </header>
+
       <nav id="nav_vertical">
         <button class="salir" onclick="button_on_click()">
           <img class="left_img_nav" src="./style/img/left.png" />
         </button>
-        <div class="nav_contents">
-          <!-- <div class="nav_content"><a class="nav_link" href="/login">dbq</a></div> -->
-          <div class="nav_content">
-            <a class="nav_link" href="/login">Учасники</a>
-          </div>
-          <div class="nav_content">
-            <a class="nav_link" href="/login">Засідання</a>
-          </div>
+        <div class="nav_content">
+          <a class="nav_link" href="login.html">Увійти</a>
         </div>
+        <div id="id_nav_vertical"></div>
       </nav>
       <nav id="nav_horizontal">
-        <div class="nav_contents">
-          <div class="nav_content">
-            <a class="nav_link" href="/members">Учасники</a>
-          </div>
-          <div class="nav_content">
-            <a class="nav_link" href="/meets">Засідання</a>
-          </div>
-        </div>
+        <div id="id_nav_horizontal"></div>
       </nav>
       <button id="buttonmenu" onclick="button_on_click()">
         <img class="imgmenu" src="./style/img/line.png" />
       </button>
-      <div class="news-conatiner"><div class="news">
+      <main>
+        <div class="news-container"><div class="news">
         <div class="news-header">
             <div class="news-title">Вчені розкрили головний секрет краси Нефертіті</div>
             <div class="news-data">2024-05-21</div>
@@ -122,7 +93,14 @@
          </div>
         <div class="news-text">eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee eeeeeeeeeeeeee eeeeeeeeeeeeee eeeeeeeeeeeeee eeeeeeeeeeeeee eeeeeeeeeeeeee eeeeeeeeeeeeee eeeeeeeeeeeeee eeeeeeeeeeeeee eeeeeeeeeeeeee eeeeeeeeeeeeee eeeeeeeeeeeeee eeeeeeeeeeeeee eeeeeeeeeeeeee eeeeeeeeeeeeee eeeeeeeeeeeeee eeeeeeeeeeeeee eeeeeeeeeeeeee eeeeeeeeeeeeee </div>
       </div>
-    </div>    </div>
-</main>
-</body>
+    </div> </div>
+      </main>
+      <footer id="id_footer"></footer>
+    </div>
+  </body>
+  <script src="./style/js/parts/nav.js"></script>
+  <script src="./style/js/parts/footer.js"></script>
+  <script src="./style/js/parts/color.js"></script>
+  <script src="./style/js/index.js"></script>
 </html>
+
