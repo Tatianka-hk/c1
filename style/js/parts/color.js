@@ -1,5 +1,5 @@
 const colors = {
-    "primaryColor": "#008000",
+    "primaryColor": "#800080",
     "secondColor": "hsl(0, 0%, 100%)",
     "accentColor": "#fff323"
 }
