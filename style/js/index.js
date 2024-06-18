@@ -21,7 +21,7 @@ function logout() {
 function loadHTML() {
   document.getElementById("id_nav_vertical").innerHTML = navHTML
   document.getElementById("id_nav_horizontal").innerHTML = navHTML
-  document.getElementById("id_footer").innerHTML = footerHtmlText()
+  document.getElementById("id_footer").innerHTML = footerHTML
 }
 
 function updateCSSVariables(primaryColor, secondaryColor, accentColor) {
