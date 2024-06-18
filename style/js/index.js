@@ -46,9 +46,10 @@ function auth_use_nav() {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
+  updateCSSVariables(colors.primaryColor, colors.secondColor, colors.accentColor)
   loadHTML()
   auth_use_nav()
-  updateCSSVariables(colors.primaryColor, colors.secondColor, colors.accentColor)
+  
 })
 
 const membersFilterInput = document.querySelector(".members-filter-input")
