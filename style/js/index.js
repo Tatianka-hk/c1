@@ -17,19 +17,7 @@ function logout() {
   localStorage.removeItem("ticket")
   window.location.href = "index.html"
 }
-function footerHtmlText(){
-  let text = ``
-  footerData.forEach((data)=>{
-    text+=`<div class='contact_us-data'>
-    ${data.contactMethod} - ${data.link}
-    </div>`
-  })
-  let fullText = `<footer>
-  <img src="./style/img/logo.png" alt="Logo">
-  <div class="contact_us">` +text+`</div>
-  </footer>`
-  return fullText
-}
+
 function loadHTML() {
   document.getElementById("id_nav_vertical").innerHTML = navHTML
   document.getElementById("id_nav_horizontal").innerHTML = navHTML
